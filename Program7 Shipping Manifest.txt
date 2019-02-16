@@ -1,0 +1,309 @@
+/*
+Programmer: Benjamin Linam 
+Date: March 17, 2016
+Assignment: Program7
+*/
+
+#include<stdio.h>
+#include<math.h>
+
+   void inv_pop(double b[][90]);
+   char menu(void);
+   int add_box(double b[][90], int x);
+   int check_capacity(double b[][90], int x);
+   int size(double height, double width, double length);
+   void eraser(double b[][90], int n);
+   void customer(double b[][90], int n);
+   void display(double b[][90]);
+   void weight(double b[][90]);
+   void small(double b[][90]);
+   void large(double b[][90]);
+   char menuoption;
+   double id, height, length, width, wt;
+
+   int main(void)
+   {
+      int i=0;
+      int j=0;
+      int counter = 0;
+      int custnum;
+   
+      double b[7][90];
+      for(i=0;i<7;i++)
+         for(j=0;j<90;j++)
+            b[i][j] = 0;
+   
+      inv_pop(b);
+   
+      for(i=0;i<7;i++)
+      {
+         for(j=0;j<90;j++)
+            printf("%.0lf  ", b[i][j]);
+         printf("\n");
+      }
+   
+   
+      do
+      {
+         menu();
+         switch(menuoption)
+         {
+            case 'A': case 'a':
+               {
+                  add_box(b, counter);
+                  counter ++;
+               
+               }
+               for(i=0;i<7;i++)
+               {
+                  for(j=0;j<90;j++)
+                     printf("%.0lf  ", b[i][j]);
+                  printf("\n");
+               }
+            
+               break;
+         
+         
+            case 'D': case 'd':
+            
+               {
+                  printf("Please enter customer number to erase:");
+                  scanf("%d", &custnum);
+                  eraser(b, custnum);
+                  for(i=0;i<7;i++)
+                  {
+                     for(j=0;j<90;j++)
+                        printf("%.0lf  ", b[i][j]);
+                     printf("\n");
+                  }
+               
+                  break;
+               }
+            
+            case 'C': case 'c':
+               {
+                  printf("Please enter customer number to display:");
+                  scanf("%d", &custnum);
+                  customer(b, custnum);
+                  break;
+               }
+            
+            
+            case 'R': case 'r':
+               {        
+                  display(b);
+                  break;
+               }       
+            
+            case 'W': case 'w':
+               {				
+                  weight(b);
+                  break;
+               }      
+            
+            case 'T': case 't':
+               {       	
+                  small(b);
+                  large(b);
+                  break;
+               }      
+            
+            case 'X': case 'x':
+               {
+                  return 0;
+               } 
+            default:
+               {
+                  printf("invalid option");
+                  break;
+               }
+         }
+      }while (1);
+   
+   
+      return 0;
+   }
+
+   char menu(void)
+   {
+      printf("\nOperation       Menu Option\n");
+      printf("Add box               A\n");
+      printf("Delete box            D\n");
+      printf("Display spec          C\n");
+      printf("Display all           R\n");
+      printf("Total weight          W\n");
+      printf("Total num             T\n");
+      printf("Exit Program          X\n");
+      printf("Please enter a menu option from the table above: ");
+      scanf(" %c", &menuoption);
+      return(menuoption);
+   }
+
+   void inv_pop(double b[7][90])
+   {
+      int j;
+      int a;
+      printf("Please enter a three digit truck number:");
+      scanf("%d", &a);
+      for(j=0; j<90; j++)
+         b[0][j]=(a*1000)+2+(j*2);
+   }
+
+   int add_box(double b[7][90], int x)
+   {
+      double s;
+      int res;
+      printf("Please enter customer ID:");
+      scanf("%lf", &id);
+      printf("Please enter box height:");
+      scanf("%lf", &height);
+      printf("Please enter box length:");
+      scanf("%lf", &length);
+      printf("Please enter box width:");
+      scanf("%lf", &width);
+      printf("Please enter box weight:");
+      scanf("%lf", &wt); 
+      s=size(height, width, length);
+      res = check_capacity(b, s);
+      if(res == 1)
+      {
+         b[1][x] = id;
+         b[2][x] = height;
+         b[3][x] = length;
+         b[4][x] = width;
+         b[5][x] = s;
+         b[6][x] = wt;
+         return (b[7][90]);
+      }
+      if(res == 0)
+      {
+         printf("Truck is too full\n");
+      }
+   
+   
+   }
+
+   int check_capacity(double b[7][90], int x)
+   {
+      int i, j, sum, gsum;
+      if (x==1)
+      {
+         x=1;
+      }
+      if (x==2)
+      {
+         x=3;
+      }
+      for(j=0;j<90;j++)
+         sum = sum + b[5][j];
+      gsum = sum + x;
+      if (gsum < 90)
+         return 1;
+      if (gsum > 90)
+         return 0;
+   
+   
+   }
+
+   int size(double x, double y, double z)
+   {
+      if (x>0 && x<=100 && y>0 && y<=100 && z>0 && z<=100)
+      {
+         return 1;
+      }
+      if ( x>100 && x<=200 || y>100 && y<=200 || z>100 && z<=200)
+      {
+         return 2;
+      }
+      if ( x<=0 || x>200 || y<=0 || y>200 || z<=0 || z>200)
+      {
+      
+         return 0;
+      }
+   
+   }
+
+   void eraser(double b[7][90], int num)
+   {
+      int i, j;
+      for(j=0;j<90;j++)
+      {
+         if(fabs(b[1][j] - num)<0.0000001)
+            for(i=1; i<7; i++)
+               b[i][j] = 0	;
+         break;
+      }
+      if(j == 90)
+      {
+         printf("Invalid customer number\n");
+      }
+   }
+   void customer(double b[7][90], int num)
+   {
+      int i, j;
+      printf("Shipping Number\nCustomer ID\nHeight(cm)\nWidth(cm)\nLength(cm)\nSize\nWeight(kg)\n");
+      for(j=0;j<90;j++)
+      {
+         if(fabs(b[1][j] - num)<0.0000001)
+         
+            for(i=0;i<7;i++)
+            {
+               printf("%.2lf  ", b[i][j]);
+               printf("\n");
+            }
+      }
+   
+   
+   }
+
+   void display(double b[7][90])
+   {
+      int i, j; 
+      printf("Shipping Number\nCustomer ID\nHeight(cm)\nWidth(cm)\nLength(cm)\nSize\nWeight(kg)\n"); 
+      for(j=0;j<90;j++)
+         if( b[1][j] > 0)
+         {		
+            for(i=0;i<7;i++)
+            {
+               printf("%.2lf  ", b[i][j]);
+               printf("\n");
+            }
+         
+         } 
+   }
+
+   void weight(double b[][90])
+   {
+      int i, j;
+      double sum=0;
+      for(j=0;j<90;j++)
+         sum = sum + b[6][j];
+      printf("Total weight of boxes is: %.2lf kg", sum);
+   }
+
+   void small(double b[][90])
+   {
+      int i, j;
+      double num=0;
+      for(j=0;j<90;j++)
+         if( b[5][j] == 1)
+         {
+            num = num + 1;
+         }
+           			   
+      printf("Number of small boxes is: %.0lf\n", num);
+   }
+
+   void large(double b[][90])
+   {
+      int i, j;
+      double num=0;
+      for(j=0;j<90;j++)
+         if( b[5][j] == 2)
+         {
+            num = num + 1;
+         }
+            
+      printf("Number of large boxes is: %.0lf", num);
+   
+   }

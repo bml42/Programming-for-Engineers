@@ -1,0 +1,211 @@
+/*
+Programmer: Benjamin Linam
+Date: February 11, 2016
+Assignment: Program 3
+*/
+
+#include <stdio.h>
+#include <math.h>
+
+int main (void)
+{
+char option = 0;
+double Ant = 0;
+double Man = 0;
+int Cap = 0;
+int Am = 1;
+int x = 1;
+int y = 1;
+float z = 0;
+
+do{
+printf("  Operation     Menu Option\n");  
+printf("   rectangle        A\n");
+printf("   circle           C\n");
+printf("   multiply         M\n");
+printf("   divide           D\n");
+printf("   remainder        R\n");
+printf("   squared          V\n");
+printf("   square root      T\n");
+printf("   factorial        F\n");
+printf("   with_tax         W\n");
+printf("   lb_kg            L\n");
+printf("   inch_cm          I\n");
+printf("   Exit Program     X\n\n");
+printf(" Please enter a menu option from the table above:");
+scanf(" %c", &option);
+switch(option) 
+{
+case 'A':
+	printf(" Please enter the first side length:");
+	scanf("%lf", &Ant);
+	if (Ant < 0)
+		Ant = Ant * -1;
+	printf(" Please enter the second side length:");
+	scanf("%lf", &Man);
+	if (Man < 0)
+		Man = Man * -1;
+	printf(" Area = %.2lf\n", Ant * Man);
+	printf(" Perimeter = %.2lf\n", 2*Ant + 2*Man);
+	break;
+case 'a':
+	printf(" Please enter the first side length:");
+	scanf("%lf", &Ant);
+	if (Ant < 0)
+		Ant = Ant * -1;
+	printf(" Please enter the second side length:");
+	scanf("%lf", &Man);
+	if (Man < 0)
+		Man = Man * -1;
+	printf(" Area = %.2lf\n", Ant * Man);
+	printf(" Perimeter = %.2lf\n", 2*Ant + 2*Man);
+	break;
+case 'C':
+   printf(" Please enter the diameter length for a circle:");
+	scanf("%lf", &Ant);
+	if (Ant < 0)
+		Ant = Ant * -1;
+	printf(" Area = %.2f\n", 3.14 * pow(.5 * Ant, 2));
+	printf(" Circumference = %.2f\n", 3.14 * Ant);
+	break;
+case 'c':
+   printf(" Please enter the diameter length for a circle:");
+	scanf("%lf", &Ant);
+	if (Ant < 0)
+		Ant = Ant * -1;
+	printf(" Area = %.2f\n", 3.14 * pow(.5 * Ant, 2));
+	printf(" Circumference = %.2f\n", 3.14 * Ant);
+	break;
+case 'M':
+	printf(" Please enter the first number to be  multiplied:");
+	scanf("%lf", &Ant);
+	printf(" Please enter the second number to be multiplied:");
+	scanf("%lf", &Man);
+	printf(" %.2lf X %.2lf = %.2lf\n", Ant, Man, Ant * Man);
+	break;
+case 'm':
+	printf(" Please enter the first number to be  multiplied:");
+	scanf("%lf", &Ant);
+	printf(" Please enter the second number to be multiplied:");
+	scanf("%lf", &Man);	
+	printf(" %.2lf X %.2lf = %.2lf\n", Ant, Man, Ant * Man);
+	break;
+case 'D':
+	printf(" Please enter a number for the numerator:");
+	scanf("%lf", &Ant);
+	printf(" Please enter a number for the denominator:");
+	scanf("%lf", &Man);
+	if (Man == 0)
+	printf(" Cannot divide by zero\n");
+		else 
+		printf(" %.2lf divided by %.2lf = %.2lf\n", Ant, Man, Ant/Man);
+	break;
+case 'd':
+	printf(" Please enter a number for the numerator:");
+	scanf("%lf", &Ant);
+	printf(" Please enter a number for the denominator:");
+	scanf("%lf", &Man);
+	if (Man == 0)
+	printf(" Cannot divide by zero\n");
+		else 
+		printf(" %.2lf divided by %.2lf = %.2lf\n", Ant, Man, Ant/Man);
+	break;
+case 'R':
+	printf(" Please enter the first number:");
+	scanf("%d", &Cap);
+	printf(" Please enter the second number:");
+	scanf("%d", &Am);
+	printf(" Remainder = %d\n", Cap % Am);
+	break;
+case 'r':
+	printf(" Please enter the first number:");
+	scanf("%d", &Cap);
+	printf(" Please enter the second number:");
+	scanf("%d", &Am);
+	printf(" Remainder = %d\n", Cap % Am);
+	break;
+case 'V':
+	printf(" Please enter a number to be squared:");
+	scanf("%lf", &Ant);
+	printf(" %.2lf squared = %.2lf\n", Ant, Ant * Ant);
+	break;
+case 'v':
+	printf(" Please enter a number to be squared:");
+	scanf("%lf", &Ant);
+	printf(" %.2lf squared = %.2lf\n", Ant, Ant * Ant);
+	break; 
+case 'T':
+	printf(" Please enter a number of which to take the square root:");
+	scanf("%lf", &Ant);
+	if (Ant < 0)
+	printf(" Cannot take the square root of a negative number\n");
+	else
+	printf(" The square root of %.2lf = %.2lf\n", Ant, sqrt(Ant));
+	break;
+case 't':
+	printf(" Please enter a number of which to take the square root:");
+	scanf("%lf", &Ant);
+	if (Ant < 0)
+	printf(" Cannot take the square root of a negative number\n");
+	else
+	printf(" The square root of %.2lf = %.2lf\n", Ant, sqrt(Ant));
+	break;
+case 'F':
+	printf(" Please enter a number of which to find its factorial:");
+	scanf("%d", &Cap);
+	for (x = 1, Am = 1; x<=Cap; x++)
+		Am = Am * x; 
+			printf(" Factorial of %d = %d\n", Cap, Am);
+	break;
+case 'f':
+	printf(" Please enter a number of which to find its factorial:");
+	scanf("%d", &Cap);
+	for (x = 1, Am = 1; x<=Cap; x++)
+		Am = Am * x; 
+			printf(" Factorial of %d = %d\n", Cap, Am);
+	break;
+case 'W':
+	printf(" Please enter sale amount:");
+	scanf("%lf", &Ant);
+	printf(" Please enter tax rate:");
+	scanf("%f", &z);
+	printf(" Total sale including tax = %.2lf\n", (z/100) * Ant + Ant);
+	break; 
+case 'w':
+	printf(" Please enter sale amount:");
+	scanf("%lf", &Ant);
+	printf(" Please enter tax rate:");
+	scanf("%f", &z);
+	printf(" Total sale including tax = %.2lf\n", (z/100) * Ant + Ant);
+	break; 
+case 'L':
+	printf(" Please enter weight in pounds:");
+	scanf("%lf", &Ant);
+	printf(" %.2lf pounds = %.2lf kilograms\n", Ant, Ant * .454);
+	break;
+case 'l':
+	printf(" Please enter weight in pounds:");
+	scanf("%lf", &Ant);
+	printf(" %.2lf pounds = %.2lf kilograms\n", Ant, Ant * .454);
+	break;
+case 'I':
+	printf(" Please enter length in inches:");
+	scanf("%lf", &Ant);
+	printf(" %.2lf inches = %.2lf centimeters\n", Ant, Ant * 2.54);
+	break;
+case 'i':
+	printf(" Please enter length in inches:");
+	scanf("%lf", &Ant);
+	printf(" %.2lf inches = %.2lf centimeters\n", Ant, Ant * 2.54);
+	break;
+case 'X':
+	continue;
+default:
+	printf(" Please select an option listed in the menu below\n");
+}
+
+}while(option !='X'); //For some reason, both 'x' and 'X' will not be accepted here at the same time.  However, they do work when used on their own... Maybe to do with error codes?
+                      //Thankfully I did not have to delve into the dark world of goto while (0) , it would be nice if while took !='x' and !='X' at the same time though...
+return 0;
+
+}

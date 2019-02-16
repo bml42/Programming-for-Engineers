@@ -1,0 +1,74 @@
+/*
+Programmer: Benjamin Linam
+Date: February 20, 2016
+Assignment: Program 4
+*/
+
+#include <stdio.h>
+#include <math.h>
+
+int main (void)
+{
+
+double dog = 0; //principal balance
+double cat = 0; //interest rat
+int mouse = 0; //number of quarters
+
+int K;
+char option;
+do
+{
+	printf("Please enter beginning principal balance:");
+	scanf("%lf", &dog);
+	if(dog<=0)
+	do
+	{
+		printf("Please enter a value greater than zero:");
+		scanf("%lf", &dog);
+	}while(dog<=0);
+	if(dog>0)
+	printf("Please enter interest rate without the percentage sign:");
+	scanf("%lf", &cat);
+	double rat = cat/100; //decimal of percent interest
+	double mat = dog*rat;
+	double gat = dog+(mat/4);
+	if(cat<=0 || cat>19)
+	do
+	{
+		printf("Please enter a value greater than zero and less than 20:");
+		scanf("%lf", &cat);
+	}while(cat<=0 || cat>19); 
+	if(cat>0 && cat<=19); 
+	printf("Please enter number of quarters:");
+	scanf("%d", &mouse);
+	if(mouse<=0 || mouse>40)
+	do
+	{
+		printf("Please enter a value greater than zero and less than 41:"); 
+		scanf("%d", &mouse);
+	}while(mouse<=0 || mouse>40);
+	if(mouse>0 || mouse<=40)
+	printf("You entered a principal balance of $%.2lf for %d quarters at %.2lf%% interest.", dog, mouse, cat);
+	printf("Is this correct? (y/n)\n");
+	scanf(" %c", &option);
+	switch(option)
+	{
+	case 'n': case 'N':
+	break;	
+	case 'y': case 'Y':
+	printf("Quarter     Beginning     Interest     Ending\n");
+	printf("Number      Balance       Earned       Balance\n");
+	for(K = 1; K<=mouse; K++, dog=dog+(mat/4), rat= cat/100, mat=dog*rat, gat=dog+(mat/4))
+	{
+		printf("%d           $%.2lf        $%.2lf       $%.2lf\n", K, dog, mat/4, gat);
+	}
+	return 0;
+	default: 
+	printf("Invalid Input\n");
+	}
+	
+	}while(1);
+
+return 0;
+
+}

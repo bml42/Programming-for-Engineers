@@ -1,0 +1,280 @@
+/*
+Programmer: Benjamin Linam 
+Date: March 7, 2016
+Assignment: Program6
+*/
+
+#include <stdio.h>
+#include <math.h>
+
+   char menu_display(void);
+   double add(double, double);
+   double sub(double, double);
+   double mult(double, double);
+   double divd(double, double);
+   int remain(int, int);
+   double square(double);
+   double sqroot(double);
+   int factorial(int);
+   void iseven(int);
+   int greaterint(double);
+   int lesserint(double);
+   char menuoption;
+   
+   int main (void)
+   {
+      double A;
+      double B;
+      int C;
+      int D;
+      double result;
+      int res;
+      do
+      {
+         menu_display();
+         switch(menuoption)
+         {        
+            case 'A': case 'a':
+               {
+                  printf("Please enter the first number:");
+                  scanf("%lf",&A);
+                  printf("Please enter the second number:");
+                  scanf("%lf",&B);
+                  result=add(A,B);
+                  printf("Sum of %.2lf and %.2lf is:%.2lf\n", A, B, result);
+                  break;
+               }
+            
+            case 'S': case 's':
+               {
+                  printf("Please enter the first number:");
+                  scanf("%lf", &A);
+                  printf("Please enter the second number:");
+                  scanf("%lf", &B);
+                  result=sub(A,B);
+                  printf("Difference of %.2lf and %.2lf is:%.2lf\n", A, B, result);
+                  break;
+               }
+            
+            case 'M': case 'm':
+               {
+                  printf("Please enter the first number:"); 
+                  scanf("%lf", &A);
+                  printf("Please enter the second number:");
+                  scanf("%lf", &B);
+                  result=mult(A,B);
+                  printf("Product of %.2lf and %.2lf is:%.2f\n", A, B, result);
+                  break;
+               }
+            
+            case 'D': case 'd':
+               {
+                  printf("Please enter the first number:");  
+                  scanf("%lf", &A);
+                  printf("Please enter the second number:");
+                  scanf("%lf", &B);
+                  if (B == 0)
+                  {
+                     printf("invalid, cannot divide by zero\n");
+                     break;
+                  }
+                  if (B!=0)
+                  {
+                     result=divd(A,B);
+                     printf("Quotient of %.2lf and %.2lf is:%.2f\n", A, B, result);
+                     break;
+                  }
+               
+               case 'R': case 'r':
+                  {
+                     printf("Please enter the first number:");
+                     scanf("%d", &C);
+                     printf("Please enter the second number:");
+                     scanf("%d", &D);
+                     res=remain(C,D);
+                     printf("Remainder of %d and %d is:%d\n", C, D, res);
+                     break;
+                  }
+               
+               case 'V': case 'v':
+                  {
+                     printf("Please enter the number to be squared:"); 
+                     scanf("%lf", &A);
+                     result=square(A);
+                     printf("%.2lf times %.2lf is:%.2lf\n", A, A, result);
+                     break;                  
+                  }
+               case 'T': case 't':
+                  {
+                     printf("Please enter the number to take the square root of:"); 
+                     scanf("%lf", &A);
+                     if (A < 0)
+                     {					       			
+                        printf("invalid, cannot square root negative number\n");
+                     }
+                     if (A >= 0)
+                     {
+                        result=sqroot(A);
+                        printf("Square root of %.2lf is:%.2lf\n", A, result);
+                     }
+                     break;
+                  }
+               case 'F': case 'f': 
+                  {
+                     printf("Please enter number of which to take the factorial:");  
+                     scanf("%d", &C);
+                     if (C<0)
+                     {
+                        printf("Cannot take the factorial of a negative number.\n");
+                     }
+                     if (C>0)
+                     {
+                        res = factorial(C);   
+                        printf("Factorial of %d is: %d\n", C, res);
+                     }	
+                     if (C==0)
+                     {
+                        printf("The factorial of 0 is 1.\n");
+                     }
+                     break;
+                  }
+               	
+               case 'E': case 'e':
+                  {
+                     printf("Please enter the first number:");
+                     scanf("%d", &C);
+                     iseven(C);
+                     break;						
+                  }
+               	
+               case 'G': case 'g':
+                  {
+                     printf("Please enter number:");		
+                     scanf("%lf", &A);
+                     res = greaterint(A);
+                     printf("Next lowest integer value greater than %.2lf is: %d\n", A, res);
+                     break;
+                  }
+               	
+               case 'L': case 'l':
+                  {
+                     printf("Please enter number:");			 
+                     scanf("%lf", &A);
+                     res = floor(A) ;
+                     printf("Next greatest integer value less than %.2lf is: %d\n", A, res);
+                     break;
+                  }
+               	
+               case 'X': case 'x':
+                  {
+                     return (0);
+                  }
+               	
+               default:
+                  {
+                     printf("Input not recognized, please enter option from menu.\n");
+                     break;
+                  }
+               
+               }
+         
+         }
+      
+      }
+      while (1);
+   
+      return (0);
+   }
+
+   char menu_display(void)
+   {
+      printf("\nOperation       Menu Option\n");
+      printf("Add                A\n");
+      printf("Subtract           S\n");
+      printf("Multiply           M\n");
+      printf("Divide             D\n");
+      printf("Remainder          R\n");
+      printf("Squared            V\n");
+      printf("Square Root        T\n");
+      printf("Factorial          F\n");
+      printf("Is even            E\n");
+      printf("Greater integer    G\n");
+      printf("Less integer       L\n");
+      printf("Exit program       X\n\n");
+      printf("Please enter a menu option from the table above: ");
+      scanf(" %c", &menuoption);
+      return(menuoption);
+   }
+
+   double add(double X,double Y)
+   {
+      return X+Y;
+   }
+
+   double sub(double X, double Y)
+   {
+   //diff=A-B;
+      return X-Y;
+   }
+
+   double mult(double X, double Y)
+   {
+      //product=A*B;
+      return X*Y;
+   }
+
+   double divd(double X, double Y)
+   {
+      //quo=A/B;
+      return X/Y;
+   }
+
+   int remain(int X, int Y)
+   {
+     // rem=C%D;
+      return X%Y;
+   }
+
+   double square(double X)
+   {
+     // sqr=A*A;
+      return X*X;
+   }
+	
+   double sqroot(double X)
+   {
+      return (sqrt(X));
+   }
+	
+   int factorial(int X)
+   {
+      int count;
+      int res=1;
+      for (count = 1; count<=X; count++)
+      {
+         res= res*count;         
+      }		
+      return res;
+   }
+   void iseven(int X)
+   {	
+      int res = X % 2;
+      if(res==0)
+      {
+         printf("The number is even.\n");
+      }
+      if(res!=0)
+      {
+         printf("The number is odd.\n");
+      }
+   }
+	
+   int greaterint(double X)
+   {
+      return ceil(X);
+   }
+	
+   int lesserint(double X)
+   {
+      return floor(X);
+   }

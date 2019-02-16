@@ -1,0 +1,154 @@
+/*
+Programmer: Benjamin Linam 
+Date: April 13, 2016
+Assignment: Program8
+*/
+
+#include <stdio.h>
+#include <math.h>
+#include <string.h>
+
+
+
+   void cap (char first[30], char last[30], char author[100]);
+   void paragraph(char *par);
+   void clear(char *string, int n);
+   char menu(void);
+   
+	
+   int main(void)
+   {
+      char par[400] = {"\0"};
+      char first_name[30] = {"\0"};
+      char last_name[30] = {"\0"};
+      char author[100] = {"\0"}, temp;
+      int i;
+      do{
+      
+      
+         switch(menu())
+         {
+            case 'c':  case 'C': 
+               
+               clear(par, strlen(par));
+               clear(first_name, strlen(first_name));
+               clear(last_name, strlen(last_name));
+               clear(author, strlen(author));
+               break;
+               
+            case 'n':  case 'N':
+               
+               printf("Please enter first name:");
+               scanf("%s", &first_name);
+               printf("Please enter last name:");
+               scanf("%s", &last_name);
+               break;
+               
+            case 'f':  case 'F':
+               
+               cap(first_name, last_name, author);
+               break;
+               
+            case 'p':  case 'P':
+               
+               printf("Please enter paragraph: ");
+               scanf("%c", &temp);
+              
+               gets(par);
+               
+               break;
+               
+            
+            case 'r':  case 'R':
+               
+               
+               for(i=0; i<strlen(par); i++)
+               {
+                  if(par[i] != ' ')
+                     break;
+					}
+						if (par [i]>=97 && par [i]<=123)
+						par[i] = par[i] - 32;
+               
+					i = i+1;
+               for(i; i<strlen(par); i++)
+               {
+                  if(par[i] == '.')
+                    { par[i+1] = '\n';
+                   	if (par [i+2]>=97 && par [i+2]<=123)
+                      par[i+2] = par[i+2] - 32;
+							 }
+                     
+               }
+               break;
+            
+            case 's':  case 'S':
+               
+               paragraph(author);
+               paragraph(par);
+               break;
+               
+            case 'x':  case 'X':
+               
+               return 0;
+               
+            default:
+            
+               printf("Not a recognized command");
+               break;
+         	         	
+         }
+      
+      }while (1);
+   
+   
+      return 0;
+   
+   }
+
+   char menu(void)
+   {
+      char menuoption = ' ';
+      printf("\nOperation       Menu Option\n");
+      printf("Clear all          C\n");
+      printf("Enter info         N\n");
+      printf("Capitalize         F\n");
+      printf("New paragraph      P\n");
+      printf("Format             R\n");
+      printf("Display            S\n");
+      printf("Exit               X\n\n");
+      
+      printf("Please enter a menu option from the table above: ");
+      scanf(" %c", &menuoption);
+      return menuoption;
+   }
+
+   void cap (char first[30], char last[30], char author[100])
+   {
+      if (first[0] >=97 && first[0]<=123)
+      {
+         first[0] = first[0] - 32;
+      }
+      if (last[0] >=97 && last[0]<=123)
+      {
+         last[0] = last[0] - 32;
+      }
+      strcpy(author, "Author: ");
+      strcat(author, first);
+      strcat(author, " ");
+      strcat(author, last);
+   }
+
+   void paragraph(char *cat)
+   {
+      printf("%s\n", cat);
+   }
+
+   void clear(char *string, int n)
+   {
+      int i;
+      for (i=0; i<n; i++)
+      {
+         string[i] = '\0';
+      }
+   }

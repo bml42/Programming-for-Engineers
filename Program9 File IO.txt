@@ -1,0 +1,57 @@
+/*
+Programmer: Benjamin Linam 
+Date: April 21, 2016
+Assignment: Program9
+*/
+
+#include <stdio.h>
+#include <math.h>
+#include <string.h>
+
+
+typedef struct
+{
+   char name[29];
+   double area;
+   int pop;
+   int avgpop;
+   double avgarea;
+}fruitstat;
+
+
+int main(void)
+{
+   fruitstat a[29];
+   char n[20];
+   int i=0;
+   FILE *in;
+   FILE *out;
+   in = fopen("fruit.txt", "r");
+   while(fscanf(in, "%s  %lf  %d", a[i].name, &a[i].area, &a[i].pop) == 3)
+      i++;
+   for (i=0; i<5; i++)
+   {
+      a[0].avgpop = (a[0].avgpop + a[i].pop);
+      a[0].avgarea = (a[0].avgarea + a[i].area);
+   }
+   printf("Average population is: %d\n", a[0].avgpop/5);
+   printf("Average area is: %.2lf\n", a[0].avgarea/5);
+   //printf("%s    %.2lf    %d\n", a[i].name, a[i].area, a[i].pop);  
+   
+   printf("Please enter output file name: ");
+   scanf("%s",n);
+   out = fopen(n, "w");
+   //for (i=0; i<2; i++)
+   //fprintf(out, "%s   %.2lf   %d", a[i].name, a[i].area, a[i].pop);
+   fprintf(out, "Average population is %d people\r\n", a[0].avgpop/5);
+   fprintf(out, "Average area is %.2lf square miles\r\n", a[0].avgarea/5);
+
+   fclose(in);
+   fclose(out);
+
+
+
+
+   return 0;
+
+}
